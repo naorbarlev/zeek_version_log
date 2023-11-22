@@ -18,7 +18,8 @@ event zeek_init()
 	Log::create_stream(corelight_version::LOG, [ $columns=corelight_version::Info,
 	    $path="zeek_version" ]);
 	}
-event zeek_done()
+
+event connection_established(c: connection)
 	{
 	local log: Info = [ $version_number=Version::info$version_number ];
 	Log::write(corelight_version::LOG, log);
